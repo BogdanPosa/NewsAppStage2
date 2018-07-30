@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- The size of the big text views-->
+    <dimen name="textSizeBig">16sp</dimen>
+
+    <!-- The size of the normal text views-->
+    <dimen name="textSizeNormal">12sp</dimen>
+
+    <!-- The width of the section rectangle-->
+    <dimen name="rectangleWidth">50dp</dimen>
+
+    <!-- The height of the section rectangle-->
+    <dimen name="rectangleHeight">48dp</dimen>
+
+    <!-- Dimen for standard margin-->
+    <dimen name="standard_margin">16dp</dimen>
+
+    <!-- Dimen for standard padding-->
+    <dimen name="standard_padding">16dp</dimen>
+</resources>

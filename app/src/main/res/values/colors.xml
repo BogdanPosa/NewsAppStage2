@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2B3D4D</color>
+
+    <color name="colorPrimaryDark">#23303D</color>
+
+    <color name="colorAccent">#10CAC9</color>
+
+    <color name="textColorNewsDetails">#B4BAC0</color>
+
+    <color name="textColorNewsTitle">#2B3D4D</color>
+
+    <!-- Color for an News of section Politics -->
+    <color name="section1">#4A7BA7</color>
+
+    <!-- Section circle color for an News of section Business -->
+    <color name="section2">#04B4B3</color>
+
+    <!-- Section circle color for an News of section Opinion -->
+    <color name="section3">#10CAC9</color>
+
+    <!-- Section circle color for an News of section World news and UK news-->
+    <color name="section4">#F5A623</color>
+
+    <!-- Section background color for important News categories -->
+    <color name="section5">#FF7D50</color>
+
+    <!-- Section circle color for an News of section Science -->
+    <color name="section6">#FC6644</color>
+
+    <!-- Section circle color for an News of section Society -->
+    <color name="section7">#E75F40</color>
+
+    <!-- Section circle color for an News of section Music -->
+    <color name="section8">#E13A20</color>
+
+    <!-- Section circle color for an News of section Technology -->
+    <color name="section9">#D93218</color>
+
+    <!-- Section circle color for an News of all other sections -->
+    <color name="section10">#C03823</color>
+
+    <!-- Section background color for an News of all other sections -->
+    <color name="section11">#ffff</color>
+
+</resources>
