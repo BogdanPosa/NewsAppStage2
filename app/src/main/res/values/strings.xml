@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewsAppStage1</string>
+    <string name="app_name">What\'s new? </string>
     <string name="no_feed">No news were found</string>
     <string name="near_the">CECACA</string>
     <string name="read_timeout">Read time out</string>

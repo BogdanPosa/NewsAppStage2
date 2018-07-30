@@ -44,6 +44,9 @@ public class NewsActivity extends AppCompatActivity
     /** TextView that is displayed when the list is empty */
     private TextView mEmptyStateTextView;
 
+    private static final String API_KEY = BuildConfig.API_KEY;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +100,6 @@ public class NewsActivity extends AppCompatActivity
 
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-//        return new NewsLoader(this, USGS_REQUEST_URL);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -122,10 +124,10 @@ public class NewsActivity extends AppCompatActivity
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("order-by", orderBy);
         uriBuilder.appendQueryParameter("page-size", minNews);
-        uriBuilder.appendQueryParameter("api-key", "81f23f4d-dda5-4e83-8294-9147e4d4715d");
+        uriBuilder.appendQueryParameter("api-key", API_KEY);
 
 
-        // Return the completed uri `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time
+        // Return the completed uri `
         return new NewsLoader(this, uriBuilder.toString());
 
     }
