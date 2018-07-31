@@ -194,10 +194,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
         switch (section) {
             case "":
             case "Politics":
-                sectionColorBackground = R.color.section5;
+                sectionColorBackground = R.color.section11;
                 break;
             case "Business":
-                sectionColorBackground = R.color.section5;
+                sectionColorBackground = R.color.section4;
                 break;
             case "Opinion":
                 sectionColorBackground = R.color.section11;

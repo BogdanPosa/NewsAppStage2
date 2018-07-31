@@ -79,7 +79,7 @@ public final class QueryUtils {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
@@ -146,10 +146,10 @@ public final class QueryUtils {
                 JSONObject currentNews = NewsArray.getJSONObject(i);
 
                 // Extract the value for the key called "section"
-                String section = currentNews.getString("sectionName");
+                String section = currentNews.optString("sectionName");
 
                 // Extract the value for the key called "title"
-                String title = currentNews.getString("webTitle");
+                String title = currentNews.optString("webTitle");
 
                 JSONArray tags = currentNews.getJSONArray("tags");
 
@@ -157,15 +157,15 @@ public final class QueryUtils {
                 String authorSurname = null;
                 for (int j = 0; j < tags.length(); j++) {
                     JSONObject currentAuthor = tags.getJSONObject(j);
-                    authorName = currentAuthor.getString("firstName");
-                    authorSurname = currentAuthor.getString("lastName");
+                    authorName = currentAuthor.optString("firstName");
+                    authorSurname = currentAuthor.optString("lastName");
                 }
 
                 // Extract the value for the key called "time"
-                String time = currentNews.getString("webPublicationDate");
+                String time = currentNews.optString("webPublicationDate");
 
                 // Extract the value for the key called "url"
-                String url = currentNews.getString("webUrl");
+                String url = currentNews.optString("webUrl");
 
 
                 // Create a new {@link News} object with the title, authorName, authorSurname, time,
