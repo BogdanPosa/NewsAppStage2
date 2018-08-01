@@ -12,26 +12,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewsActivity extends AppCompatActivity
-        implements LoaderCallbacks<List<News>> {
+        implements LoaderCallbacks<List<News>>, SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private static final String Log_string="";
 
     /** URL for News data from the guardian api dataset */
     private static final String USGS_REQUEST_URL =
             "http://content.guardianapis.com/search?";
-  //          "http://content.guardianapis.com/search?show-tags=contributor&order-by=newest&page-size=10&api-key=81f23f4d-dda5-4e83-8294-9147e4d4715d";
     /**
      * Constant value for the News loader ID.
      * Will be used if multiple loaders are added.
@@ -61,6 +57,13 @@ public class NewsActivity extends AppCompatActivity
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
         newsFeedListView.setAdapter(mAdapter);
+
+        // Obtain a reference to the SharedPreferences file for this app
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // And register to be notified of preference changes
+        // So we know when the user has adjusted the query settings
+        prefs.registerOnSharedPreferenceChangeListener(this);
+
 
         // Set an item click listener on the ListView, which sends an explicit intent to web browser
         // to open a website with more information about the selected News.
@@ -95,6 +98,25 @@ public class NewsActivity extends AppCompatActivity
             loadingIndicator.setVisibility(View.GONE);
 
             mEmptyStateTextView.setText(R.string.no_internet_connection);
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if (key.equals(getString(R.string.settings_min_news_key)) ||
+                key.equals(getString(R.string.settings_order_by_key))) {
+            // Clear the ListView as a new query will be kicked off
+            mAdapter.clear();
+
+            // Hide the empty state text view as the loading indicator will be displayed
+            mEmptyStateTextView.setVisibility(View.GONE);
+
+            // Show the loading indicator while new data is being fetched
+            View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.VISIBLE);
+
+            // Restart the loader to requery the USGS as the query settings have been updated
+            getLoaderManager().restartLoader(NEWSFEED_LOADER_ID, null, this);
         }
     }
 
@@ -171,4 +193,5 @@ public class NewsActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

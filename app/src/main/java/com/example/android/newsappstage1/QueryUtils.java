@@ -151,31 +151,36 @@ public final class QueryUtils {
                 // Extract the value for the key called "title"
                 String title = currentNews.optString("webTitle");
 
-                JSONArray tags = currentNews.getJSONArray("tags");
+                // Checks if the news have tags
+                if (currentNews.has("tags")) {
+                    // rest of the author name processing goes here
 
-                String authorName = null;
-                String authorSurname = null;
-                for (int j = 0; j < tags.length(); j++) {
-                    JSONObject currentAuthor = tags.getJSONObject(j);
-                    authorName = currentAuthor.optString("firstName");
-                    authorSurname = currentAuthor.optString("lastName");
+                    JSONArray tags = currentNews.getJSONArray("tags");
+
+
+                    String authorName = null;
+                    String authorSurname = null;
+                    for (int j = 0; j < tags.length(); j++) {
+                        JSONObject currentAuthor = tags.getJSONObject(j);
+                        authorName = currentAuthor.optString("firstName");
+                        authorSurname = currentAuthor.optString("lastName");
+                    }
+
+                    // Extract the value for the key called "time"
+                    String time = currentNews.optString("webPublicationDate");
+
+                    // Extract the value for the key called "url"
+                    String url = currentNews.optString("webUrl");
+
+
+                    // Create a new {@link News} object with the title, authorName, authorSurname, time,
+                    // and url from the JSON response.
+                    News News = new News(section, title, authorName, authorSurname, time, url);
+
+                    // Add the new {@link News} to the list of news.
+                    news.add(News);
                 }
-
-                // Extract the value for the key called "time"
-                String time = currentNews.optString("webPublicationDate");
-
-                // Extract the value for the key called "url"
-                String url = currentNews.optString("webUrl");
-
-
-                // Create a new {@link News} object with the title, authorName, authorSurname, time,
-                // and url from the JSON response.
-                News News = new News(section, title, authorName, authorSurname, time, url);
-
-                // Add the new {@link News} to the list of news.
-                news.add(News);
             }
-
         } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the News JSON results", e);
 
